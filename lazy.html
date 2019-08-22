@@ -8,6 +8,7 @@
 
     <script>
         // 1- se almacena en la variable "element" todos aquellos elementos con la clase "lazy", en  este caso 20 elementos.
+        // ERROR: en este caso sería ".lazy" en lugar de "lazy"
         var element = document.querySelectorAll("lazy");
         // 2- se intenta aplicar la función getBoundingClientRect(), que debería aplicarse a un solo elemento, a
 		// un listado de elementos (ya que querySelectorAll() estará devolviendo como decía antes 20 elementos, no uno)
