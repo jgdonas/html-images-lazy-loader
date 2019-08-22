@@ -101,12 +101,9 @@
     const offset = 400;
     // 2- tomo todos los elementos lazy
     const lazyElements = document.querySelectorAll(".lazy");
-    // 3- por cada uno de los elementos lazy, defino el comportamiento cada vez que el usuario haga scroll:
-    // * obtengo distancia a la parte inferior del viewport con getBoundingClientRect()
-    // * obtengo la distancia restante hasta cargar el contenido de la imagen
-    // * tomo el valor de la imagen a cargar, solo para mostrar un mensaje con algo de información útil
-    lazyElements.forEach(function(element){
 
+    //muestra de cómo se usa un foreach y aplicar cierta lógica para cada uno de los elementos de la lista:
+    lazyElements.forEach(function(element){
         let imageToBeLoaded = element.getAttribute('src');
         console.log(
             `%c ${imageToBeLoaded} will be lazy loaded`,
@@ -117,6 +114,10 @@
 
     window.addEventListener("scroll", function(){
 
+        // 3- por cada uno de los elementos lazy, defino el comportamiento cada vez que el usuario haga scroll:
+        // * obtengo distancia a la parte inferior del viewport con getBoundingClientRect()
+        // * obtengo la distancia restante hasta cargar el contenido de la imagen
+        // * tomo el valor de la imagen a cargar, solo para mostrar un mensaje con algo de información útil
         lazyElements.forEach(function(element){
             let imageToBeLoaded = element.getAttribute('src');
             let verticalDistanceToViewportBottom = element.getBoundingClientRect().y;
