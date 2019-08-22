@@ -5,30 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Lazy elements</title>
     <link rel="stylesheet" href="styles.css">
-
-    <script>
-        // 1- se almacena en la variable "element" todos aquellos elementos con la clase "lazy", en  este caso 20 elementos.
-        // ERROR: en este caso sería ".lazy" en lugar de "lazy"
-        var element = document.querySelectorAll("lazy");
-        // 2- se intenta aplicar la función getBoundingClientRect(), que debería aplicarse a un solo elemento, a
-		// un listado de elementos (ya que querySelectorAll() estará devolviendo como decía antes 20 elementos, no uno)
-		// Lo que se está almacenando en position es un misterio...
-        var position = element.getBoundingClientRect();
-        // 3- se asigna en "height" algo que también es un misterio ya que no sabemos qué puede haber hecho javascript
-		//al invocar "getBoundingClientRect()" sobre una colección de elementos
-        height = position.top;
-		// 4- aquí se desvela el misterio al mostrarse por consola que esto imprime...nada, porque la ejecución se
-		// ha interrumpido en el paso 2, el mensaje que muestra la consola es "element.getBoundingClientRect is not a function"
-        console.log(position);
-    </script>
-
 </head>
 <body>
 <header class="header">
 
 </header>
 <div class="main">
-    <h1 class="title">Loading lazy elements</h1>
+    <h1 class="title">Lazy loaded elements</h1>
     <div class="gallery">
         <div class="gallery__row">
             <div class="gallery__item">
@@ -112,6 +95,40 @@
         </div>
     </div>
 </div>
+
+<script>
+    // 1- defino el offset deseado
+    const offset = 400;
+    // 2- tomo todos los elementos lazy
+    const lazyElements = document.querySelectorAll(".lazy");
+    // 3- por cada uno de los elementos lazy, defino el comportamiento cada vez que el usuario haga scroll:
+    // * obtengo distancia a la parte inferior del viewport con getBoundingClientRect()
+    // * obtengo la distancia restante hasta cargar el contenido de la imagen
+    // * tomo el valor de la imagen a cargar, solo para mostrar un mensaje con algo de información útil
+    lazyElements.forEach(function(element){
+
+        let imageToBeLoaded = element.getAttribute('src');
+        console.log(
+            `%c ${imageToBeLoaded} will be lazy loaded`,
+            'color: green; font-weight: bold;'
+        );
+
+    });
+
+    window.addEventListener("scroll", function(){
+
+        lazyElements.forEach(function(element){
+            let imageToBeLoaded = element.getAttribute('src');
+            let verticalDistanceToViewportBottom = element.getBoundingClientRect().y;
+            let distanceUntilLoaded = verticalDistanceToViewportBottom - offset;
+
+            console.log(
+                `%c ${imageToBeLoaded} is ${verticalDistanceToViewportBottom} px to viewport, and will be loaded after scrolling ${distanceUntilLoaded} more pixels.`,
+                'color: green; font-weight: bold;'
+            );
+        });
+    })
+</script>
 </body>
 
 </html>
