@@ -1,4 +1,4 @@
-var lazyLoad = (function () {
+var htmlImagesLazyLoader = (function () {
     let lazyElements;
     let totalOffset;
     let viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
