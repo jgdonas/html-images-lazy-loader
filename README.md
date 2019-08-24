@@ -16,4 +16,4 @@ You can easily check how easy is to use is in the html file: lazy.html in this r
 
 # TODO!
 
-* This code should be optimised since this module is using the scroll event to calculate all the images position, which is quite expensive in computational terms. An alternative version using the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) which by the way should be easier to implement that this solution.
+* ~~This code should be optimised since this module is using the scroll event to calculate all the images position, which is quite expensive in computational terms. An alternative version using the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) which by the way should be easier to implement that this solution.~~ Yes, I did it: [html-images-lazy-loader-w-intersection-api](https://github.com/jgdonas/html-images-lazy-loader-w-intersection-api)
